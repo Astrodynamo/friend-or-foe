@@ -16,6 +16,14 @@ class UsersController < ApplicationController
     current_user
   end
 
+  def login
+    redirect_to user_path(current_user) if logged_in?
+    
+  end
+
+  def logout
+  end
+
   private
 
   def user_params
