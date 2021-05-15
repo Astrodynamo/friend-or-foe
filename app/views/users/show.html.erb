@@ -1,9 +1,9 @@
-<h1><%= @user.name %></h1>
+<h1><%= current_user.name %></h1>
 <h3>Reports: </h3>
-<% if @user.reports.empty? %>
+<% if current_user.reports.empty? %>
     <p>No reports yet</p>
 <% else %>
-    <% @user.reports.each do |report| %>
+    <% current_user.reports.each do |report| %>
         <p><%= report.date %> - <%= report.client.name %> - <%= report.rating %></p>
     <% end %>
 <% end %>
