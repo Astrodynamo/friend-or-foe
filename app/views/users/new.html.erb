@@ -1,0 +1,15 @@
+<h1>Welcome to Friend or Foe!</h1>
+<p>Please enter your credentials to sign up.</p>
+
+<%= form_for @user do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+    <%= f.label :password %>
+    <%= f.text_field :password %><br>
+
+    <%= f.label :company %>
+    <%= f.collection_select :business, Business.all, :id, :name %><br>
+
+    <%= f.submit %>
+<% end %>
