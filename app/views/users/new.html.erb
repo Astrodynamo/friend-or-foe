@@ -9,7 +9,7 @@
     <%= f.text_field :password %><br>
 
     <%= f.label :company %>
-    <%= f.collection_select :business, Business.all, :id, :name %><br>
+    <%= f.collection_select :business_id, Business.all, :id, :name %><br>
 
     <%= f.submit %>
 <% end %>
