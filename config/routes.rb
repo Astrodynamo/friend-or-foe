@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show]
   get '/login', to: 'users#login'
   post '/login', to: 'users#verify_login'
+  get '/logout', to: 'users#logout'
 end
