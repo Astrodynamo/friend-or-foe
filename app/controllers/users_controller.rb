@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
+  # GET '/users'
   def new
     @user = User.new
-  end
+  end #refactor view for select or create business
 
+  # POST '/users'
   def create
     @user = User.new(user_params)
     if @user.save
@@ -13,14 +15,17 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET '/users/:id'
   def show
     redirect_to login_path if !logged_in? || current_user.id.to_s != params[:id]
-  end
+  end #refactor logic out of view
 
+  # GET '/login'
   def login
     redirect_to user_path(current_user) if logged_in?
   end
 
+  # POST '/login'
   def verify_login
     @user = User.find_by(id: params[:user][:id])
     render '/login' unless @user.authenticate(params[:user][:password])
@@ -28,6 +33,7 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  # GET '/logout'
   def logout
     session.clear if current_user
     redirect_to login_path
