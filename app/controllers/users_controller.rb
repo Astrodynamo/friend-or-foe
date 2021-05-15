@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    current_user
+    redirect_to login_path if current_user.id.to_s != params[:id]
   end
 
   def login
