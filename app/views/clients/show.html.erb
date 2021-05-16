@@ -1,2 +1,6 @@
-<h1>Clients#show</h1>
-<p>Find me in app/views/clients/show.html.erb</p>
+<h1><%= @client.name %></h1>
+<h3>Average Rating: <%= @client.average_rating %></h3>
+<h3>Positive Reports: <%= @client.positivity_ratio %>%</h3>
+<h3>Payment Record: <%= @client.payment_record %>%</h3>
+<h3>Appointment Record: <%= @client.appointment_record %>%</h3>
+<h3>Times Blacklisted: <%= @client.blacklisted %></h3>
