@@ -1,0 +1,53 @@
+<h1>Enter a new report: </h1>
+
+<%= form_for @report, url: user_reports_url(current_user) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.label :client, "Select an existing client: " %>
+    <%= f.collection_select :client_id, @clients, :id, :name, include_blank: 'Select a client' %><br>
+    <%= f.fields_for :client, @report.build_client do |client_attributes| %>
+        <%= client_attributes.label :name, "Or Enter a New Client Name: " %>
+        <%= client_attributes.text_field :name %>
+    <% end %>
+    <br>
+
+    <%= f.label :date, "When did the interaction occur?" %>
+    <%= f.date_select :date %>
+    <br>
+
+    <%= f.label :positive, "In your opinion, was the interaction generally: " %>
+    <%= f.radio_button :positive, true %>
+    <%= f.label :positive, 'Positive', value: true %>
+    <%= f.radio_button :positive, 'neutral' %>
+    <%= f.label :positive, 'Neutral', value: "" %>
+    <%= f.radio_button :positive, false %>
+    <%= f.label :positive, 'Negative', value: false %>
+    <br>
+
+    <%= f.label :payment, "Did the client pay their bill on time?" %>
+    <%= f.radio_button :payment, true %>
+    <%= f.label :payment, 'Yes', value: true %>
+    <%= f.radio_button :payment, 'n/a' %>
+    <%= f.label :payment, 'N/A', value: "" %>
+    <%= f.radio_button :payment, false %>
+    <%= f.label :payment, 'No', value: false %>
+    <br>
+
+    <%= f.label :appointment, "Did the client show up for their scheduled appointment?" %>
+    <%= f.radio_button :appointment, true %>
+    <%= f.label :appointment, 'Yes', value: true %>
+    <%= f.radio_button :appointment, 'n/a' %>
+    <%= f.label :appointment, 'N/A', value: "" %>
+    <%= f.radio_button :appointment, false %>
+    <%= f.label :appointment, 'No', value: false %>
+    <br>
+
+    <%= f.label :rating, "How would you rate this client based on your interaction?" %>
+    <%= f.select :rating, [["5: Can't wait to work with them again", 5], ["4: Nice to work with", 4], ["3: Neutral", 3], ["2: Needs work: something wasn't right", 2], ["1: Please don't come back", 1]] %>
+    <br>
+
+    <%= f.label :blacklist, "Has this client been blacklisted/barred from futher service?" %>
+    <%= f.check_box :blacklist, value: true %>
+    <br>
+
+    <%= f.submit %>
+<% end %>
