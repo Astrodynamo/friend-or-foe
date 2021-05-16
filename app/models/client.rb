@@ -22,4 +22,15 @@ class Client < ApplicationRecord
             ratio = (positives.to_f / interactions.count.to_f * 100.0).round(2)
         end
     end
+
+    def payment_record
+        invoices = reports.collect{|report| report.payment}
+        if invoices.size == 0
+            "Not enough reports"
+        else
+            payments = 0
+            invoices.each {|invoice| payments += 1 if invoice}
+            ratio = (payments.to_f / invoices.count.to_f * 100.0).round(2)
+        end
+    end
 end
