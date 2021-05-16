@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
 
   # POST '/clients'
   def create
-    @client = Client.find_or_initialize_by(name: client_params[:name])
+    @client = Client.find_or_initialize_by(name: client_params[:name]) #currently preventing duplicate names, not ideal
     if @client.save
       redirect_to client_path(@client)
     else
@@ -19,7 +19,7 @@ class ClientsController < ApplicationController
   # GET '/clients'
   def index
     @clients = Client.all
-  end
+  end #refactor view logic to a class method?
 
   # GET '/clients/:id'
   def show
