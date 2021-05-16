@@ -2,7 +2,6 @@ class Client < ApplicationRecord
     has_many :reports
     has_many :users, through: :reports
 
-    #client view helpers: average_rating, positivity_ratio, payment_record, times_blacklisted, times_reported
     def average_rating
         ratings = reports.collect{|report| report.rating}
         if ratings.size == 0
@@ -43,5 +42,11 @@ class Client < ApplicationRecord
             appointments.each {|appointment| completed += 1 if appointment}
             ratio = (completed.to_f / appointments.count.to_f * 100.0).round(2)
         end
+    end
+
+    def blacklisted
+        black = 0
+        reports.each {|report| black += 1 if report.blacklist}
+        black
     end
 end
