@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_action :require_login
-  
+
   # GET '/clients/new'
   def new
     @client = Client.new
@@ -8,6 +8,12 @@ class ClientsController < ApplicationController
 
   # POST '/clients'
   def create
+    @client = Client.find_or_initialize_by(name: client_params[:name])
+    if @client.save
+      redirect_to client_path(@client)
+    else
+      render '/clients/new'
+    end
   end
 
   # GET '/clients'
