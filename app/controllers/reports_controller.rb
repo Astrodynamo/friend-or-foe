@@ -10,9 +10,9 @@ class ReportsController < ApplicationController
     def create
         if report_params[:client_id]
             @report = Report.create(report_params)
-            #@report.build_client(name: report_params[:client][:name]) if !report_params[:client][:name].empty?
-       
             redirect_to user_report_path(current_user, @report)
+        #elsif report_params[:client_attributes][:name]
+        #    @report = Report.new.build_client(name: report_params[:client_attributes][:name]).update(report_params)
         else
             render "/reports/new"
         end

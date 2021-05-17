@@ -1,4 +1,4 @@
-<h1><%= @report.client.name %> - <%= @report.rating %> stars <%= - BLACKLISTED if @report.blacklist %></h1>
+<h1><%= @report.client.name %> - <%= @report.rating %> stars <%= + "- BLACKLISTED" if @report.blacklist %></h1>
 
 <p>Reported on <%= @report.date.strftime("%D") %></p>
 
