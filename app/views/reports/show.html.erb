@@ -1,0 +1,34 @@
+<h1><%= @report.client.name %> - <%= @report.rating %> stars <%= - BLACKLISTED if @report.blacklist %></h1>
+
+<p>Reported on <%= @report.date.strftime("%D") %></p>
+
+<p>The mood of this interaction was 
+    <% if @report.positive == true %>
+        positive.
+    <% elsif @report.positive == false %>
+        negative.
+    <% else %>
+        neutral.
+    <% end %>
+</p>
+
+
+<p><%= @report.client.name %>  
+    <% if @report.payment == true %>
+        paid on time.
+    <% elsif @report.payment == false %>
+        did not pay on time.
+    <% else %>
+        did not make a purchase.
+    <% end %>
+</p>
+
+<p><%= @report.client.name %>  
+    <% if @report.appointment == true %>
+        kept the scheduled appointment.
+    <% elsif @report.appointment == false %>
+        did not keep the scheduled appointment.
+    <% else %>
+        did not make an appointment.
+    <% end %>
+</p>
