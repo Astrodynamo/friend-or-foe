@@ -8,6 +8,11 @@ class ReportsController < ApplicationController
         @clients = Client.all
     end
 
+    # GET /users/:id/reports -or- /clients/:id/reports
+    def index
+        redirect_to user_path(current_user)
+    end # split this action or define a view with split logic... user reports and client reports are very different things.
+
     # POST /users/:id/reports -or- /clients/:id/reports
     def create
         if report_params[:client_id] # This seems to work for both new and existing clients, correctly creates and associates new client. Check again after adding validations.
@@ -50,6 +55,13 @@ class ReportsController < ApplicationController
 
     # DELETE /users/:id/reports/:id -or- /clients/:id/reports/:id
     def destroy
+        @report = Report.find_by(id: params[:id])
+        if current_user == @report.user
+            @report.destroy
+            redirect_to user_reports_path(current_user), notice: "Report deleted"
+        else
+            redirect_to user_reports_path(current_user), alert: "That's not your report"
+        end
     end
 
     private

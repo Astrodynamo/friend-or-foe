@@ -32,3 +32,5 @@
         did not make an appointment.
     <% end %>
 </p>
+
+<%= button_to "Delete Report", user_report_url(current_user, @report), method: 'delete' %>
